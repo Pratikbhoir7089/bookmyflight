@@ -3,22 +3,39 @@ package com.bookmyflight.entity;
 import com.bookmyflight.enums.Gender;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name="traveller")
+@SequenceGenerator(name = "travel_seq",sequenceName = "travel_seq",initialValue = 4001)
 public class Traveller {
 	
+	@Id
+	@GeneratedValue(generator = "travel_seq",strategy=GenerationType.SEQUENCE)
+	@Column(name="traveller_id")
 	private int travellerid;
+	@Column(name="email_id")
 	private String emailid;
+	@Column(name="mobile_no")
 	private String mobileno;
+	@Column(name="first_name")
 	private String firstname;
+	@Column(name="last_name")
 	private String lastname;
 	private Gender gender;
 	private String state;
 	private String address;
 	private String pincode;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="booking_id",referencedColumnName = "bookingId")
+	@JoinColumn(name="booking_id",referencedColumnName = "booking_Id")
 	private Booking bookings;
 
 	public Traveller() {

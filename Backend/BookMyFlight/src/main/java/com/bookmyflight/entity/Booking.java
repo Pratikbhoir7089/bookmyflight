@@ -1,5 +1,7 @@
 package com.bookmyflight.entity;
 
+import java.time.LocalDate;
+
 import com.bookmyflight.enums.Bookingstatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +28,7 @@ import jakarta.persistence.Table;
 		@JoinColumn(name="flight_id",referencedColumnName = "flight_id")
 		private Flight flightId;
 		@Column(name="booking_date")
-	private String bookingDate;
+	private LocalDate bookingDate;
 	@Column(name="passanger_name")
 	private String passangerName;
 	@Column(name="no_of_seat")
@@ -39,7 +41,7 @@ import jakarta.persistence.Table;
 		// TODO Auto-generated constructor stub
 	}
 
-	public Booking(int bookingId, User userId, Flight flightId, String bookingDate, String passangerName, int noOfSeat,
+	public Booking(int bookingId, User userId, Flight flightId, LocalDate bookingDate, String passangerName, int noOfSeat,
 			double totalPrice, Bookingstatus status) {
 		super();
 		this.bookingId = bookingId;
@@ -50,6 +52,10 @@ import jakarta.persistence.Table;
 		this.noOfSeat = noOfSeat;
 		this.totalPrice = totalPrice;
 		this.status = status;
+	}
+
+	public void setBookingDate(LocalDate bookingDate) {
+		this.bookingDate = bookingDate;
 	}
 
 	public int getBookingId() {
@@ -74,14 +80,6 @@ import jakarta.persistence.Table;
 
 	public void setFlightId(Flight flightId) {
 		this.flightId = flightId;
-	}
-
-	public String getBookingDate() {
-		return bookingDate;
-	}
-
-	public void setBookingDate(String bookingDate) {
-		this.bookingDate = bookingDate;
 	}
 
 	public String getPassangerName() {
